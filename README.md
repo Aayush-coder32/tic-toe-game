@@ -46,7 +46,7 @@ Choose “Play a match” from the home screen, select Player vs Player or Playe
 
 In a computer match, the difficulty controls the opponent: Easy plays random moves, Medium mixes smart and random moves, Hard searches for the best move, and Impossible uses perfect minimax play. Use `P` to pause and `H` to request a hint while playing.
 
-Scores and stats are stored locally in the browser. Use “Export data” in the footer to download a JSON backup. To import a backup, right-click “Export data” and choose a previously exported JSON file.
+Scores and stats are stored locally in the browser. Use “Export data” in the footer to download a JSON backup, or “Import data” to restore a previously exported JSON file.
 
 ## Technologies used
 
@@ -57,6 +57,10 @@ Scores and stats are stored locally in the browser. Use “Export data” in the
 - Web Audio API for sound effects.
 - Canvas API for board screenshot export.
 - Fullscreen, Clipboard, Web Share, File, and Blob APIs where supported by the browser.
+
+## Background image
+
+The glass interface uses a dark Tic-Tac-Toe photo from [Pexels](https://www.pexels.com/photo/red-and-white-tik-tak-toe-game-illustration-220051/) as a subtle remote background with a readability overlay. An internet connection is needed for that image; the solid theme color remains as the fallback.
 
 ## Future improvements
 
