@@ -296,6 +296,14 @@
     $("#statWinRate").textContent = `${winRate}%`;
     $("#statStreak").textContent = data.stats.currentStreak;
     $("#statBest").textContent = data.stats.bestScore;
+    $("#fullGames").textContent = data.stats.games;
+    $("#fullWins").textContent = data.stats.wins;
+    $("#fullLosses").textContent = data.stats.losses;
+    $("#fullDraws").textContent = data.stats.draws;
+    $("#fullWinRate").textContent = `${winRate}%`;
+    $("#fullLongest").textContent = data.stats.longestStreak;
+    $("#fullCurrent").textContent = data.stats.currentStreak;
+    $("#fullBest").textContent = data.stats.bestScore;
     const results = data.results.slice(-8);
     $("#barChart").innerHTML = (results.length ? results : ["empty"]).map((result) => {
       const type = typeof result === "string" ? "empty" : result.type;
@@ -622,6 +630,7 @@
       case "pause": togglePause(); break;
       case "resume": resumeGame(); break;
       case "restart": restartRound(); break;
+      case "new-game": openSetup(); break;
       case "next-round": closeModal(); nextRound(); break;
       case "undo": undoMove(); break;
       case "redo": redoMove(); break;
@@ -630,6 +639,7 @@
       case "screenshot": saveBoardScreenshot(); break;
       case "fullscreen": document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.(); break;
       case "export": exportData(); break;
+      case "import": refs.importInput.click(); showToast("Choose a Neon Noughts JSON backup to import.", "↑"); break;
       case "share": shareScore(); break;
       case "reset-scores": resetScores(); break;
       case "reset-stats": resetStats(); break;
@@ -677,5 +687,5 @@
   });
 
   document.querySelector('[data-action="export"]')?.addEventListener("contextmenu", (event) => { event.preventDefault(); refs.importInput.click(); showToast("Choose a Neon Noughts JSON file to import.", "↑"); });
-  updateHomeStats(); syncDaily(); applyPreferences(); renderBadges();
+  updateHomeStats(); syncDaily(); applyPreferences(); renderStats(); renderBadges();
 })();
