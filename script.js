@@ -697,5 +697,9 @@
   });
 
   document.querySelector('[data-action="export"]')?.addEventListener("contextmenu", (event) => { event.preventDefault(); refs.importInput.click(); showToast("Choose a Neon Noughts JSON file to import.", "↑"); });
+  document.body.classList.add("intro-playing");
+  const introDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 350 : 3200;
+  setTimeout(finishIntro, introDelay);
+  setTimeout(() => { if (refs.intro && !refs.intro.classList.contains("is-closing")) $("#introStatus").textContent = "Arena ready"; }, 2200);
   updateHomeStats(); syncDaily(); applyPreferences(); renderStats(); renderBadges();
 })();
