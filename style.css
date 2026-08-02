@@ -93,6 +93,9 @@ body.intro-playing { overflow: hidden; }
 .intro-loader span { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--violet), var(--cyan)); box-shadow: 0 0 12px var(--cyan); animation: intro-load 2.6s var(--ease) forwards; }
 .intro-content small { margin-top: 12px; color: var(--text-faint); font-size: 10px; letter-spacing: .05em; }
 .loading-dots { display: inline-block; width: 20px; overflow: hidden; text-align: left; animation: dots 1.2s steps(4, end) infinite; }
+.intro-enter { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 11px 17px 11px 18px; border: 1px solid rgba(111, 229, 239, .42); border-radius: 12px; color: #fff; background: linear-gradient(115deg, rgba(112, 89, 244, .82), rgba(141, 118, 255, .72)); box-shadow: 0 10px 28px rgba(112, 89, 244, .25); font-size: 11px; font-weight: 700; opacity: 0; transform: translateY(8px); animation: intro-button-in .7s 1.5s var(--ease) forwards, intro-button-glow 2.4s 2.2s ease-in-out infinite alternate; transition: transform .22s var(--ease), box-shadow .22s; }
+.intro-enter:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(112, 89, 244, .42); }
+.intro-enter span { color: var(--cyan); font-size: 17px; line-height: .7; }
 .intro-skip { position: absolute; z-index: 3; right: 30px; bottom: 27px; padding: 8px 0; color: var(--text-faint); background: transparent; font-size: 10px; transition: color .2s, transform .2s; }
 .intro-skip:hover { color: var(--text); transform: translateX(3px); }
 .intro-skip span { margin-left: 7px; color: var(--cyan); font-size: 16px; vertical-align: -2px; }
@@ -205,6 +208,8 @@ body.intro-playing { overflow: hidden; }
 @keyframes intro-orbit { from { transform: rotate(-22deg) scale(.92); opacity: .35; } to { transform: rotate(-15deg) scale(1.06); opacity: .8; } }
 @keyframes intro-symbol-float { 0%, 100% { transform: translate3d(0, 0, 0) rotate(-8deg); } 50% { transform: translate3d(10px, -16px, 0) rotate(8deg); } }
 @keyframes intro-logo-pulse { 0%, 100% { box-shadow: 0 0 35px rgba(141, 118, 255, .16), inset 0 1px 0 rgba(255, 255, 255, .2); } 50% { box-shadow: 0 0 70px rgba(141, 118, 255, .38), 0 0 22px rgba(111, 229, 239, .12), inset 0 1px 0 rgba(255, 255, 255, .25); } }
+@keyframes intro-button-in { to { opacity: 1; transform: translateY(0); } }
+@keyframes intro-button-glow { from { box-shadow: 0 10px 28px rgba(112, 89, 244, .25); } to { box-shadow: 0 10px 35px rgba(112, 89, 244, .5), 0 0 22px rgba(111, 229, 239, .12); } }
 @keyframes scanline { 0% { top: -5%; opacity: 0; } 15% { opacity: 1; } 80% { opacity: .8; } 100% { top: 105%; opacity: 0; } }
 @keyframes dots { 0% { width: 0; } 25% { width: 5px; } 50% { width: 10px; } 75%, 100% { width: 15px; } }
 @keyframes screen-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }

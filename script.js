@@ -54,6 +54,7 @@
   let lastFocusedElement = null;
   let toastTimer = null;
   let game = null;
+  const introAudio = { started: false, nodes: [], stopTimer: null };
 
   function finishIntro() {
     if (!refs.intro || refs.intro.classList.contains("is-closing")) return;
@@ -61,6 +62,60 @@
     refs.intro.setAttribute("aria-hidden", "true");
     document.body.classList.remove("intro-playing");
     setTimeout(() => refs.intro.classList.add("is-hidden"), 850);
+  }
+
+  function startIntroAudio() {
+    if (!data.settings.sound || introAudio.started) return;
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      const context = playSound.context || (playSound.context = new AudioContext());
+      if (context.state === "suspended") context.resume();
+      introAudio.started = true;
+      const now = context.currentTime;
+      const master = context.createGain();
+      master.gain.setValueAtTime(.0001, now);
+      master.gain.exponentialRampToValueAtTime(.08, now + .12);
+      master.gain.exponentialRampToValueAtTime(.0001, now + 3.35);
+      master.connect(context.destination);
+      introAudio.nodes.push(master);
+
+      const pad = context.createOscillator();
+      const padGain = context.createGain();
+      pad.type = "sine";
+      pad.frequency.setValueAtTime(130.81, now);
+      padGain.gain.setValueAtTime(.0001, now);
+      padGain.gain.exponentialRampToValueAtTime(.18, now + .45);
+      padGain.gain.exponentialRampToValueAtTime(.0001, now + 3.2);
+      pad.connect(padGain).connect(master);
+      pad.start(now); pad.stop(now + 3.35);
+      introAudio.nodes.push(pad);
+
+      const notes = [[0, 261.63], [.2, 329.63], [.4, 392], [.68, 523.25], [1.05, 392], [1.3, 523.25], [1.75, 659.25]];
+      notes.forEach(([offset, frequency], index) => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        const start = now + offset;
+        const end = start + (index === notes.length - 1 ? .72 : .3);
+        oscillator.type = index % 2 ? "sine" : "triangle";
+        oscillator.frequency.setValueAtTime(frequency, start);
+        gain.gain.setValueAtTime(.0001, start);
+        gain.gain.exponentialRampToValueAtTime(.55, start + .025);
+        gain.gain.exponentialRampToValueAtTime(.0001, end);
+        oscillator.connect(gain).connect(master);
+        oscillator.start(start); oscillator.stop(end + .04);
+        introAudio.nodes.push(oscillator);
+      });
+      introAudio.stopTimer = setTimeout(stopIntroAudio, 3700);
+    } catch {
+      // Browsers may block audio until a user gesture; the visual intro still runs.
+    }
+  }
+
+  function stopIntroAudio() {
+    clearTimeout(introAudio.stopTimer);
+    introAudio.nodes.forEach((node) => { try { node.stop?.(); } catch {} try { node.disconnect?.(); } catch {} });
+    introAudio.nodes = [];
   }
 
   const symbols = { X: "×", O: "○" };
