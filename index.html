@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#090d1e" />
+    <meta name="description" content="A modern, glassmorphism Tic-Tac-Toe experience with smart modes, statistics, and delightful details." />
+    <title>Neon Noughts — Tic-Tac-Toe, reimagined</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <button class="brand" data-action="home" aria-label="Return to Neon Noughts home">
+          <span class="brand-mark" aria-hidden="true"><span>×</span><span>○</span></span>
+          <span class="brand-copy"><strong>Neon Noughts</strong><small>tactical play, elevated</small></span>
+        </button>
+        <div class="topbar-actions">
+          <button class="icon-button" data-action="sound" aria-label="Toggle sound" title="Toggle sound"><span class="sound-icon" aria-hidden="true">◖</span></button>
+          <button class="icon-button" data-action="theme" aria-label="Toggle light and dark theme" title="Toggle theme"><span aria-hidden="true">◐</span></button>
+          <button class="avatar-button" data-action="settings" aria-label="Open settings" title="Settings">A</button>
+        </div>
+      </header>
+
+      <main>
+        <section id="homeScreen" class="screen active" aria-labelledby="homeTitle">
+          <div class="home-grid">
+            <div class="hero-copy">
+              <div class="eyebrow"><span class="live-dot"></span> THE CLASSIC, REWIRED</div>
+              <h1 id="homeTitle">Think <span>three</span><br />moves ahead.</h1>
+              <p class="hero-lede">A beautiful little arena for big-brain tactics. Play a friend, challenge the machine, and make every move count.</p>
+              <div class="hero-actions">
+                <button class="button button-primary button-large" data-action="open-setup"><span>Play a match</span><span class="button-arrow" aria-hidden="true">↗</span></button>
+                <button class="button button-ghost button-large" data-action="rules"><span class="play-circle" aria-hidden="true">?</span><span>How to play</span></button>
+              </div>
+              <button class="daily-link" data-action="daily"><span class="daily-spark" aria-hidden="true">✦</span><span><strong>Daily challenge</strong><small>A fresh perfect-play puzzle, every day</small></span><span class="link-arrow" aria-hidden="true">→</span></button>
+            </div>
+
+            <div class="hero-visual" aria-label="Preview of a Neon Noughts game board">
+              <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+              <div class="preview-card glass-card">
+                <div class="preview-top"><span class="mini-status"><span class="live-dot"></span> Live arena</span><span class="mini-label">01 / 09</span></div>
+                <div class="mini-board" aria-hidden="true">
+                  <span class="mini-cell x-mark">×</span><span class="mini-cell"></span><span class="mini-cell o-mark">○</span>
+                  <span class="mini-cell"></span><span class="mini-cell x-mark">×</span><span class="mini-cell"></span>
+                  <span class="mini-cell o-mark">○</span><span class="mini-cell"></span><span class="mini-cell"></span>
+                </div>
+                <div class="preview-bottom"><span><small>Current turn</small><strong><i class="turn-dot"></i> You · X</strong></span><span class="preview-score"><small>Score</small><strong>04 <b>:</b> 02</strong></span></div>
+              </div>
+              <div class="floating-note note-win"><span class="note-icon">✦</span><span><strong>Clean sweep</strong><small>Streak +1</small></span></div>
+              <div class="floating-note note-time"><span class="note-icon clock-icon">◷</span><span><strong>02:47</strong><small>Time played</small></span></div>
+            </div>
+          </div>
+
+          <div class="home-divider"></div>
+          <div class="feature-strip">
+            <div class="feature-item"><span class="feature-icon icon-spark">✦</span><span><strong>Smart opponents</strong><small>From casual to impossible</small></span></div>
+            <div class="feature-item"><span class="feature-icon icon-chart">⌁</span><span><strong>Track your edge</strong><small>Stats that stick around</small></span></div>
+            <div class="feature-item"><span class="feature-icon icon-shield">◇</span><span><strong>Made for focus</strong><small>Quietly delightful details</small></span></div>
+            <div class="home-stat"><span class="home-stat-value" id="homeGames">0</span><span class="home-stat-label">games played</span></div>
+          </div>
+        </section>
+
+        <section id="gameScreen" class="screen" aria-labelledby="gameTitle" hidden>
+          <div class="game-heading">
+            <button class="back-button" data-action="home"><span aria-hidden="true">←</span> Home</button>
+            <div class="game-heading-center"><span class="eyebrow" id="gameModeEyebrow">PLAYER VS COMPUTER</span><h2 id="gameTitle">Your move, Alex.</h2></div>
+            <div class="timer-pill" aria-label="Game timer"><span class="timer-pulse"></span><span id="gameTimer">00:00</span></div>
+          </div>
+
+          <div class="score-row">
+            <div class="score-card player-score-card"><div class="score-card-top"><span class="symbol-badge symbol-x">×</span><span class="score-label" id="xScoreLabel">Player X</span></div><strong id="xScore">0</strong></div>
+            <div class="score-divider"><span>VS</span></div>
+            <div class="score-card opponent-score-card"><div class="score-card-top"><span class="symbol-badge symbol-o">○</span><span class="score-label" id="oScoreLabel">Computer</span></div><strong id="oScore">0</strong></div>
+            <div class="draw-card"><span class="draw-icon">∼</span><span><small>Draws</small><strong id="drawScore">0</strong></span></div>
+          </div>
+
+          <div class="game-layout">
+            <section class="board-panel glass-card">
+              <div class="turn-banner"><div><span class="turn-kicker">CURRENT TURN</span><strong id="turnLabel">Your turn</strong></div><div class="turn-token" id="turnToken">×</div></div>
+              <div id="board" class="board" role="grid" aria-label="Tic-Tac-Toe board"></div>
+              <div class="board-footer"><span><i class="online-dot"></i> Local match</span><span id="moveCount">Move 0 / 9</span></div>
+            </section>
+
+            <aside class="game-sidebar">
+              <div class="sidebar-card glass-card focus-card"><div class="card-heading"><span>Match focus</span><span class="card-kicker" id="difficultyBadge">HARD</span></div><p id="focusCopy">Take the center early. It gives you the most paths to a win.</p><div class="progress-track"><span id="focusProgress"></span></div><div class="progress-labels"><span>Opening</span><span id="progressLabel">Your turn</span><span>Endgame</span></div></div>
+              <div class="sidebar-card glass-card history-card"><div class="card-heading"><span>Move history</span><button class="text-button" data-action="clear-history">Clear</button></div><ol id="moveHistory" class="move-history"><li class="empty-history">Your moves will appear here.</li></ol></div>
+              <div class="sidebar-card glass-card stat-card"><div class="card-heading"><span>Your stats</span><button class="text-button" data-action="settings">View all</button></div><div class="stat-grid"><div><strong id="statWinRate">0%</strong><small>Win rate</small></div><div><strong id="statStreak">0</strong><small>Streak</small></div><div><strong id="statBest">0</strong><small>Best score</small></div></div><div class="bar-chart" id="barChart" aria-label="Recent game results"></div></div>
+              <div class="sidebar-card glass-card badges-card"><div class="card-heading"><span>Achievements</span><button class="text-button" data-action="settings">See all</button></div><div id="badgesList" class="badges-list"></div></div>
+            </aside>
+          </div>
+
+          <div class="game-toolbar">
+            <div class="toolbar-group"><button class="tool-button" data-action="undo" aria-label="Undo move"><span>↶</span><small>Undo</small></button><button class="tool-button" data-action="redo" aria-label="Redo move"><span>↷</span><small>Redo</small></button><button class="tool-button" data-action="hint" aria-label="Show a hint"><span>✧</span><small>Hint</small></button></div>
+            <div class="toolbar-group toolbar-center"><button class="button button-soft" data-action="pause"><span>Ⅱ</span> Pause</button><button class="button button-soft" data-action="restart"><span>↻</span> Restart</button></div>
+            <div class="toolbar-group toolbar-right"><button class="tool-button" data-action="screenshot" aria-label="Save board screenshot"><span>▣</span><small>Save board</small></button><button class="tool-button" data-action="fullscreen" aria-label="Toggle fullscreen"><span>⛶</span><small>Fullscreen</small></button></div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="app-footer"><span>NEON NOUGHTS <i>·</i> 2025</span><span>Designed for one more round <span class="footer-heart">♥</span></span><div><button class="footer-button" data-action="export">Export data</button><button class="footer-button" data-action="share">Share score</button><input id="importInput" type="file" accept="application/json" hidden /></div></footer>
+    </div>
+
+    <div id="modalLayer" class="modal-layer" hidden>
+      <div class="modal-backdrop" data-action="close-modal"></div>
+
+      <section id="setupModal" class="modal glass-card" role="dialog" aria-modal="true" aria-labelledby="setupTitle" hidden>
+        <button class="modal-close" data-action="close-modal" aria-label="Close setup">×</button>
+        <div class="modal-eyebrow">SET UP YOUR ARENA</div><h2 id="setupTitle">How do you want to play?</h2><p class="modal-lede">Choose a mode, tune the details, and make the board yours.</p>
+        <div class="mode-options"><button class="mode-option selected" data-mode="pvc"><span class="mode-icon">⌁</span><span><strong>Player vs Computer</strong><small>Test yourself against the machine</small></span><i>✓</i></button><button class="mode-option" data-mode="pvp"><span class="mode-icon">♢</span><span><strong>Player vs Player</strong><small>Pass the board, keep the bragging rights</small></span><i>✓</i></button></div>
+        <div class="setup-fields"><label class="field-label" for="playerName">Your name<input id="playerName" class="text-input" type="text" maxlength="18" placeholder="Enter your name" value="Alex" /></label><label class="field-label" for="symbolSelect">Your symbol<select id="symbolSelect" class="text-input"><option value="X">×  X</option><option value="O">○  O</option></select></label><label class="field-label" id="difficultyField" for="difficultySelect">Difficulty<select id="difficultySelect" class="text-input"><option value="easy">Easy · random moves</option><option value="medium">Medium · 50% smart</option><option value="hard" selected>Hard · strategic</option><option value="impossible">Impossible · perfect play</option></select></label></div>
+        <label class="check-row"><input id="dailyToggle" type="checkbox" /><span class="fake-check">✓</span><span><strong>Daily challenge mode</strong><small>Play today's perfect-play challenge</small></span></label>
+        <button class="button button-primary button-full" data-action="start-game">Start the match <span class="button-arrow" aria-hidden="true">↗</span></button>
+      </section>
+
+      <section id="rulesModal" class="modal glass-card" role="dialog" aria-modal="true" aria-labelledby="rulesTitle" hidden>
+        <button class="modal-close" data-action="close-modal" aria-label="Close rules">×</button><div class="modal-eyebrow">QUICK BRIEFING</div><h2 id="rulesTitle">Simple rules.<br /><span>Endless outplays.</span></h2>
+        <div class="rules-list"><div class="rule-item"><span>01</span><p>Place your symbol in any open square. You and your opponent alternate turns.</p></div><div class="rule-item"><span>02</span><p>Connect three marks in a row, column, or diagonal before the other player does.</p></div><div class="rule-item"><span>03</span><p>If all nine squares are filled with no line, the board is a draw. Reset and run it back.</p></div></div>
+        <div class="rule-tip"><span>✦</span><p><strong>Pro tip:</strong> The center square opens four possible winning lines. Keep an eye on forks.</p></div><button class="button button-primary button-full" data-action="open-setup">Got it — let's play <span class="button-arrow" aria-hidden="true">↗</span></button>
+      </section>
+
+      <section id="settingsModal" class="modal glass-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
+        <button class="modal-close" data-action="close-modal" aria-label="Close settings">×</button><div class="modal-eyebrow">PREFERENCES</div><h2 id="settingsTitle">Make it yours.</h2><p class="modal-lede">Small adjustments, your ideal focus.</p>
+        <div class="settings-list"><div class="setting-row"><span class="setting-icon">◐</span><span><strong>Theme</strong><small>Choose your atmosphere</small></span><select id="themeSelect" class="compact-select"><option value="dark">Midnight</option><option value="light">Daylight</option></select></div><div class="setting-row"><span class="setting-icon">◖</span><span><strong>Sound effects</strong><small>Clicks, moves, and wins</small></span><label class="switch"><input id="soundToggle" type="checkbox" checked /><span></span></label></div><div class="setting-row"><span class="setting-icon">↻</span><span><strong>Auto restart</strong><small>Start another round after a result</small></span><label class="switch"><input id="autoRestartToggle" type="checkbox" /><span></span></label></div><div class="setting-row"><span class="setting-icon">⊙</span><span><strong>High contrast</strong><small>Increase visual separation</small></span><label class="switch"><input id="contrastToggle" type="checkbox" /><span></span></label></div><div class="setting-row"><span class="setting-icon">⌁</span><span><strong>Default difficulty</strong><small>Used for your next computer match</small></span><select id="defaultDifficulty" class="compact-select"><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option></select></div></div>
+        <div class="danger-actions"><button class="button button-danger" data-action="reset-scores">Reset scores</button><button class="button button-danger" data-action="reset-stats">Reset all data</button></div>
+      </section>
+
+      <section id="pauseModal" class="modal modal-small glass-card" role="dialog" aria-modal="true" aria-labelledby="pauseTitle" hidden><div class="pause-orb">Ⅱ</div><div class="modal-eyebrow">GAME PAUSED</div><h2 id="pauseTitle">Take a breath.</h2><p class="modal-lede">The board is waiting exactly where you left it.</p><button class="button button-primary button-full" data-action="resume">Resume match <span class="button-arrow">↗</span></button><button class="button button-ghost button-full" data-action="home">Exit to home</button></section>
+
+      <section id="resultModal" class="modal modal-result glass-card" role="dialog" aria-modal="true" aria-labelledby="resultTitle" hidden><div id="resultIcon" class="result-icon">✦</div><div class="modal-eyebrow" id="resultEyebrow">MATCH COMPLETE</div><h2 id="resultTitle">You win!</h2><p class="modal-lede" id="resultCopy">A clean line. Beautifully played.</p><div class="result-stats"><span><strong id="resultTime">00:00</strong><small>Time</small></span><span><strong id="resultMoves">0</strong><small>Moves</small></span><span><strong id="resultScore">+1</strong><small>Score</small></span></div><div class="result-actions"><button class="button button-primary button-full" data-action="next-round">Play another round <span class="button-arrow">↗</span></button><button class="button button-ghost button-full" data-action="home">Back to home</button></div></section>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"><span class="toast-icon">✦</span><span id="toastMessage">Ready when you are.</span></div>
+    <div id="confetti" class="confetti" aria-hidden="true"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
