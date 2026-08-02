@@ -64,13 +64,14 @@
     setTimeout(() => refs.intro.classList.add("is-hidden"), 850);
   }
 
-  function startIntroAudio() {
+  async function startIntroAudio() {
     if (!data.settings.sound || introAudio.started) return;
     try {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
       if (!AudioContext) return;
       const context = playSound.context || (playSound.context = new AudioContext());
-      if (context.state === "suspended") context.resume();
+      if (context.state === "suspended") await context.resume();
+      if (context.state === "suspended") return;
       introAudio.started = true;
       const now = context.currentTime;
       const master = context.createGain();
