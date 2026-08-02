@@ -12,6 +12,24 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body>
+    <section id="introScreen" class="intro-screen" aria-label="Neon Noughts intro" aria-live="polite">
+      <div class="intro-grid" aria-hidden="true"></div>
+      <div class="intro-scanline" aria-hidden="true"></div>
+      <div class="intro-orb intro-orb-one" aria-hidden="true"></div>
+      <div class="intro-orb intro-orb-two" aria-hidden="true"></div>
+      <div class="intro-symbol intro-symbol-x" aria-hidden="true">×</div>
+      <div class="intro-symbol intro-symbol-o" aria-hidden="true">○</div>
+      <div class="intro-content">
+        <div class="intro-kicker"><span class="live-dot"></span> SYSTEM ONLINE <span class="intro-line"></span> 2025</div>
+        <div class="intro-logo" aria-hidden="true"><span>×</span><span>○</span></div>
+        <h2>NEON <span>NOUGHTS</span></h2>
+        <p>TACTICAL PLAY, ELEVATED</p>
+        <div class="intro-loader" aria-hidden="true"><span></span></div>
+        <small id="introStatus">Preparing your arena<span class="loading-dots">...</span></small>
+      </div>
+      <button class="intro-skip" data-action="skip-intro">Skip intro <span aria-hidden="true">↗</span></button>
+    </section>
+
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
