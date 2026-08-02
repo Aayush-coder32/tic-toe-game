@@ -7,6 +7,7 @@
 
   const refs = {
     html: document.documentElement,
+    intro: $("#introScreen"),
     home: $("#homeScreen"),
     game: $("#gameScreen"),
     board: $("#board"),
@@ -53,6 +54,14 @@
   let lastFocusedElement = null;
   let toastTimer = null;
   let game = null;
+
+  function finishIntro() {
+    if (!refs.intro || refs.intro.classList.contains("is-closing")) return;
+    refs.intro.classList.add("is-closing");
+    refs.intro.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("intro-playing");
+    setTimeout(() => refs.intro.classList.add("is-hidden"), 850);
+  }
 
   const symbols = { X: "×", O: "○" };
   const positionNames = ["top left", "top center", "top right", "middle left", "center", "middle right", "bottom left", "bottom center", "bottom right"];
@@ -618,6 +627,7 @@
   function handleAction(action) {
     if (action !== "sound" && action !== "theme") playSound("click");
     switch (action) {
+      case "skip-intro": finishIntro(); break;
       case "home": closeModal(); showScreen("home"); break;
       case "open-setup": openSetup(); break;
       case "rules": openModal("rulesModal"); break;
