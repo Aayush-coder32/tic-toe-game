@@ -23,7 +23,7 @@
     stats: { games: 0, wins: 0, losses: 0, draws: 0, currentStreak: 0, longestStreak: 0, bestScore: 0 },
     results: [],
     achievements: [],
-    settings: { theme: "light", sound: true, autoRestart: false, highContrast: false, difficulty: "hard" },
+    settings: { theme: "dark", sound: true, autoRestart: false, highContrast: false, difficulty: "hard" },
     profile: { name: "Alex", symbol: "X" },
     daily: { date: "", completed: false }
   });
