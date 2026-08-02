@@ -272,6 +272,39 @@ body { font-size: 15px; }
 .text-input { font-size: 12px; }
 .footer-button, .app-footer { font-size: 9px; }
 
+/* Larger, clearer typography */
+body { font-size: 16px; }
+.brand-copy strong { font-size: 18px; }
+.brand-copy small { font-size: 11px; }
+.hero-copy h1 { font-size: clamp(56px, 7vw, 90px); }
+.hero-lede { font-size: 19px; line-height: 1.7; }
+.eyebrow, .modal-eyebrow { font-size: 12px; }
+.button { font-size: 14px; }
+.button-large { font-size: 15px; }
+.daily-link strong { font-size: 14px; }
+.daily-link small { font-size: 12px; }
+.feature-item strong { font-size: 13px; }
+.feature-item small { font-size: 11px; }
+.game-heading h2 { font-size: 27px; }
+.score-label { font-size: 13px; }
+.score-card strong { font-size: 30px; }
+.turn-banner strong { font-size: 17px; }
+.board-footer { font-size: 11px; }
+.card-heading { font-size: 13px; }
+.sidebar-card p { font-size: 13px; }
+.move-history { font-size: 12px; }
+.modal h2 { font-size: 32px; }
+.modal-lede { font-size: 14px; }
+.mode-option strong, .check-row strong, .setting-row strong { font-size: 12px; }
+.mode-option small, .check-row small, .setting-row small { font-size: 11px; }
+.field-label { font-size: 11px; }
+.text-input { font-size: 13px; }
+.intro-kicker { font-size: 11px; }
+.intro-content p { font-size: 11px; }
+.intro-content small { font-size: 11px; }
+.intro-enter { font-size: 13px; }
+.intro-skip { font-size: 11px; }
+
 /* Clean landing layout without the decorative board preview */
 .hero-visual { display: none; }
 .home-grid { grid-template-columns: 1fr; max-width: 920px; margin: 0 auto; }
@@ -280,10 +313,18 @@ body { font-size: 15px; }
 .hero-lede { margin-left: auto; margin-right: auto; }
 
 @media (max-width: 600px) {
-  .hero-lede { font-size: 15px; }
-  .eyebrow, .modal-eyebrow { font-size: 9px; }
-  .game-heading h2 { font-size: 18px; }
-  .board-footer { font-size: 8px; }
+  .hero-copy h1 { font-size: clamp(46px, 13vw, 68px); }
+  .hero-lede { font-size: 16px; line-height: 1.6; }
+  .eyebrow, .modal-eyebrow { font-size: 10px; }
+  .button-large { font-size: 14px; }
+  .daily-link strong { font-size: 13px; }
+  .daily-link small { font-size: 11px; }
+  .game-heading h2 { font-size: 20px; }
+  .board-footer { font-size: 9px; }
+  .modal h2 { font-size: 28px; }
+  .intro-kicker { font-size: 9px; }
+  .intro-content p { font-size: 9px; }
+  .intro-content small { font-size: 10px; }
   .full-stats-grid { grid-template-columns: repeat(2, 1fr); }
   .intro-kicker { gap: 6px; font-size: 8px; letter-spacing: .14em; }
   .intro-content h2 { font-size: 27px; letter-spacing: .13em; }
