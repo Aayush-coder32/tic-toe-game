@@ -58,9 +58,9 @@ Scores and stats are stored locally in the browser. Use “Export data” in the
 - Canvas API for board screenshot export.
 - Fullscreen, Clipboard, Web Share, File, and Blob APIs where supported by the browser.
 
-## Background image
+## Background treatment
 
-The landing page uses the provided remote Tic-Tac-Toe image with a readability overlay as a full-screen background. An internet connection is needed for that image; the solid theme color remains as the fallback.
+The landing page uses a clean theme background with CSS ambient glows and grain texture. No remote background image is required, so the app remains visually consistent offline.
 
 ## Future improvements
 
