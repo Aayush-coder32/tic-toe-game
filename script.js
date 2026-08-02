@@ -414,7 +414,6 @@
     const userSymbol = getUserSymbol();
     const userWon = Boolean(outcome.winner && outcome.winner === userSymbol);
     data.stats.games += 1;
-    data.stats.bestScore = Math.max(data.stats.bestScore, data.scores[userSymbol] || 0);
     let resultType = "draw";
     if (isDraw) {
       data.scores.draws += 1;
@@ -438,6 +437,7 @@
         playSound("draw");
       }
     }
+    data.stats.bestScore = Math.max(data.stats.bestScore, data.scores[userSymbol] || 0);
     data.results.push({ type: resultType, date: todayKey() });
     data.results = data.results.slice(-20);
     if (userWon && data.stats.wins === 1) unlockAchievement("first-win");
