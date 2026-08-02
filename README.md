@@ -60,7 +60,7 @@ Scores and stats are stored locally in the browser. Use “Export data” in the
 
 ## Background image
 
-The glass interface uses a dark Tic-Tac-Toe photo from [Pexels](https://www.pexels.com/photo/red-and-white-tik-tak-toe-game-illustration-220051/) as a subtle remote background with a readability overlay. An internet connection is needed for that image; the solid theme color remains as the fallback.
+The glass interface uses the provided remote Tic-Tac-Toe background image with a readability overlay. An internet connection is needed for that image; the solid theme color remains as the fallback.
 
 ## Future improvements
 
