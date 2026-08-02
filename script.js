@@ -682,13 +682,14 @@
   function handleAction(action) {
     if (action !== "sound" && action !== "theme") playSound("click");
     switch (action) {
-      case "skip-intro": finishIntro(); break;
+      case "skip-intro": startIntroAudio(); finishIntro(); break;
+      case "enter-arena": startIntroAudio(); finishIntro(); break;
       case "home": closeModal(); showScreen("home"); break;
       case "open-setup": openSetup(); break;
       case "rules": openModal("rulesModal"); break;
       case "settings": closeModal(); openModal("settingsModal"); break;
       case "close-modal": closeModal(); break;
-      case "sound": data.settings.sound = !data.settings.sound; persist(); applyPreferences(); showToast(data.settings.sound ? "Sound on." : "Sound muted.", data.settings.sound ? "◖" : "⊘"); break;
+      case "sound": data.settings.sound = !data.settings.sound; if (!data.settings.sound) stopIntroAudio(); persist(); applyPreferences(); showToast(data.settings.sound ? "Sound on." : "Sound muted.", data.settings.sound ? "◖" : "⊘"); break;
       case "theme": data.settings.theme = data.settings.theme === "dark" ? "light" : "dark"; persist(); applyPreferences(); showToast(`${data.settings.theme === "dark" ? "Midnight" : "Daylight"} theme applied.`, "◐"); break;
       case "daily": startDailyChallenge(); break;
       case "start-game": startFromSetup(); break;
@@ -751,8 +752,12 @@
     if (event.key.toLowerCase() === "h") showHint();
   });
 
+  document.addEventListener("pointerdown", startIntroAudio, { once: true, passive: true });
+  document.addEventListener("keydown", startIntroAudio, { once: true });
+
   document.querySelector('[data-action="export"]')?.addEventListener("contextmenu", (event) => { event.preventDefault(); refs.importInput.click(); showToast("Choose a Neon Noughts JSON file to import.", "↑"); });
   document.body.classList.add("intro-playing");
+  startIntroAudio();
   const introDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 350 : 3200;
   setTimeout(finishIntro, introDelay);
   setTimeout(() => { if (refs.intro && !refs.intro.classList.contains("is-closing")) $("#introStatus").textContent = "Arena ready"; }, 2200);
