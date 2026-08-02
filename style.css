@@ -194,4 +194,36 @@ h1, h2, strong { font-family: "Space Grotesk", system-ui, sans-serif; }
 .full-stats-grid strong { font-size: 15px; }
 .full-stats-grid small { color: var(--text-faint); font-size: 8px; line-height: 1.2; }
 
+/* Readable type scale */
+body { font-size: 15px; }
+.brand-copy strong { font-size: 16px; }
+.brand-copy small { font-size: 10px; }
+.eyebrow, .modal-eyebrow { font-size: 11px; }
+.hero-lede { font-size: 17px; }
+.button { font-size: 13px; }
+.daily-link strong { font-size: 12px; }
+.daily-link small { font-size: 11px; }
+.feature-item strong { font-size: 12px; }
+.feature-item small { font-size: 10px; }
+.preview-top { font-size: 10px; }
+.preview-bottom small, .preview-score small { font-size: 10px; }
+.preview-bottom strong { font-size: 12px; }
+.game-heading h2 { font-size: 24px; }
+.score-label { font-size: 12px; }
+.turn-kicker, .card-kicker { font-size: 10px; }
+.turn-banner strong { font-size: 15px; }
+.board-footer { font-size: 10px; }
+.card-heading { font-size: 12px; }
+.sidebar-card p { font-size: 12px; }
+.progress-labels { font-size: 9px; }
+.text-button { font-size: 10px; }
+.move-history { font-size: 11px; }
+.stat-grid small, .full-stats-grid small { font-size: 9px; }
+.modal-lede { font-size: 13px; }
+.mode-option strong, .check-row strong, .setting-row strong { font-size: 11px; }
+.mode-option small, .check-row small, .setting-row small { font-size: 10px; }
+.field-label { font-size: 10px; }
+.text-input { font-size: 12px; }
+.footer-button, .app-footer { font-size: 9px; }
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
